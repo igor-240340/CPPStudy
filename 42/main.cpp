@@ -63,23 +63,22 @@ void example5() {
 }
 
 void example6() {
-	/* Deleted function.
-	double value1{0.314};
-	const size_t buffer_size{50};
+	double value1{ 0.314 };
+	const size_t buffer_size{ 50 };
 	std::string out(buffer_size, ' ');
-	auto [ptr1, error1]{std::to_chars(out.data(), out.data() + out.size(), value1)};
+	auto [ptr1, error1] {std::to_chars(out.data(), out.data() + out.size(), value1)};
 	if (error1 == std::errc{}) {
 		std::println("{}", out);
 	}
 
 	double value2;
-	auto [ptr2, error2]{std::from_chars(out.data(), out.data() + out.size(), value2)};
+	auto [ptr2, error2] {std::from_chars(out.data(), out.data() + out.size(), value2)};
 	if (error2 == std::errc{}) {
 		if (value1 == value2) {
 			std::println("Perfect roundtrip");
-		} else {
+		}
+		else {
 			std::println("No perfect roundtrip?!?");
 		}
 	}
-	*/
 }
