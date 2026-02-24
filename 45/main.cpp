@@ -11,17 +11,19 @@ void example6();
 void example7();
 void example8();
 void example9();
+void example10();
 
 int main() {
-	//example1();
-	//example2();
-	//example3();
-	//example4();
-	//example5();
-	//example6();
-	//example7();
-	//example8();
+	example1();
+	example2();
+	example3();
+	example4();
+	example5();
+	example6();
+	example7();
+	example8();
 	example9();
+	example10();
 }
 
 void example1() {
@@ -93,4 +95,11 @@ void example8() {
 void example9() {
 	float f{ 1.2f };
 	std::cout << format(std::locale{ "nl" }, "|{:Lg}|\n", f);
+}
+
+void example10() {
+	std::println("|{:?}|", "Hello\tWorld!\n");
+	std::println("|{:?}|", "\"");
+	std::println("|{:?}|", '\'');
+	std::println("|{:?}|", '"');
 }
