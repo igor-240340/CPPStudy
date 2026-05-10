@@ -4,12 +4,16 @@ void example1();
 void example2();
 void leaky();
 void malloc_free();
+void arrays();
+void array_of_objects();
 
 int main() {
 	example1();
 	example2();
 	leaky();
 	malloc_free();
+	arrays();
+	array_of_objects();
 }
 
 void example1() {
@@ -49,4 +53,31 @@ void malloc_free() {
 	Foo* foo2{ new Foo };
 	std::println("delete");
 	delete foo2;
+}
+
+void arrays() {
+	int array1[5];
+	int array2[5]{ 1, 2, 3, 4, 5 };
+	int array3[5]{ 1, 2 };
+	int array4[5]{};
+	int array5[]{ 1, 2, 3, 4, 5 };
+
+	int* array6{ new int[5] };
+	delete[] array6;
+	array6 = nullptr;
+
+	int* array7{ new int[] { 1, 2, 3, 4, 5 } };
+	delete[] array7;
+	array7 = nullptr;
+}
+
+void array_of_objects() {
+	class Simple {
+	public:
+		Simple() { std::println("Simple constructor called!"); }
+		~Simple() { std::println("Simple destructor called!"); }
+	};
+
+	Simple* my_simple_array{ new Simple[4] };
+	delete[] my_simple_array;
 }
