@@ -6,6 +6,7 @@ void leaky();
 void malloc_free();
 void arrays();
 void array_of_objects();
+void array_of_pointers_to_objects();
 
 int main() {
 	example1();
@@ -14,6 +15,7 @@ int main() {
 	malloc_free();
 	arrays();
 	array_of_objects();
+	array_of_pointers_to_objects();
 }
 
 void example1() {
@@ -72,6 +74,7 @@ void arrays() {
 }
 
 void array_of_objects() {
+	std::println("\narray_of_objects()");
 	class Simple {
 	public:
 		Simple() { std::println("Simple constructor called!"); }
@@ -79,5 +82,30 @@ void array_of_objects() {
 	};
 
 	Simple* my_simple_array{ new Simple[4] };
+	std::println();
 	delete[] my_simple_array;
+	my_simple_array = nullptr;
+}
+
+void array_of_pointers_to_objects() {
+	std::println("\narray_of_pointers_to_objects()");
+	class Simple {
+	public:
+		Simple() { std::println("Simple constructor called!"); }
+		~Simple() { std::println("Simple destructor called!"); }
+	};
+
+	const size_t size{ 4 };
+	Simple** my_simple_ptr_array{ new Simple*[size] };
+	for (size_t i{ 0 }; i < size; ++i) {
+		my_simple_ptr_array[i] = new Simple{};
+	}
+	std::println();
+	for (size_t i{ 0 }; i < size; ++i) {
+		delete my_simple_ptr_array[i];
+		my_simple_ptr_array[i] = nullptr;
+	}
+
+	delete[] my_simple_ptr_array;
+	my_simple_ptr_array = nullptr;
 }
