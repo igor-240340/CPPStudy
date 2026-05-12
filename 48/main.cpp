@@ -7,6 +7,8 @@ void malloc_free();
 void arrays();
 void array_of_objects();
 void array_of_pointers_to_objects();
+void multidim_stack_array();
+void multidim_heap_array();
 
 int main() {
 	example1();
@@ -16,6 +18,8 @@ int main() {
 	arrays();
 	array_of_objects();
 	array_of_pointers_to_objects();
+	multidim_stack_array();
+	multidim_heap_array();
 }
 
 void example1() {
@@ -108,4 +112,26 @@ void array_of_pointers_to_objects() {
 
 	delete[] my_simple_ptr_array;
 	my_simple_ptr_array = nullptr;
+}
+
+void multidim_stack_array() {
+	std::println("\nmultidim_stack_array()");
+	char board[3][3]{};
+	board[0][0] = 'X';
+	board[2][1] = 'O';
+}
+
+void multidim_heap_array() {
+	std::println("\nmultidim_heap_array()");
+	char** my_array{ new char* [3] };
+	for (size_t i{ 0 }; i < 3; ++i) {
+		my_array[i] = new char[3];
+	}
+
+	for (size_t i{ 0 }; i < 3; ++i) {
+		delete[] my_array[i];
+		my_array[i] = nullptr;
+	}
+	delete[] my_array;
+	my_array = nullptr;
 }
