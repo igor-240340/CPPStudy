@@ -9,6 +9,8 @@ void array_of_objects();
 void array_of_pointers_to_objects();
 void multidim_stack_array();
 void multidim_heap_array();
+void access_violation();
+void pointer_casting();
 
 int main() {
 	example1();
@@ -20,6 +22,8 @@ int main() {
 	array_of_pointers_to_objects();
 	multidim_stack_array();
 	multidim_heap_array();
+	//access_violation(); // Crashes with 0xc0000005.
+	pointer_casting();
 }
 
 void example1() {
@@ -134,4 +138,28 @@ void multidim_heap_array() {
 	}
 	delete[] my_array;
 	my_array = nullptr;
+}
+
+void access_violation() {
+	std::println("\naccess_violation()");
+	char* invalid_memory_location{ (char*)113 };
+	*invalid_memory_location = 'H';
+}
+
+void pointer_casting() {
+	std::println("\npointer_casting()");
+	class Simple {
+	public:
+		Simple() { std::println("Simple constructor called!"); }
+		~Simple() { std::println("Simple destructor called!"); }
+	};
+
+	Simple* s1{ new Simple };
+	char* char_ptr1{ (char*)s1 };
+	std::println("Simple as char: '{}'", *char_ptr1);
+
+	// Won't let casting to unrelated type.
+	//Simple* s2{ new Simple };
+	//char* char_ptr2{ static_cast<char*>(s2) };
+	//std::println("Simple as char: '{}'", *char_ptr2);
 }
