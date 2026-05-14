@@ -1,4 +1,5 @@
 #include <print>
+#include <array>
 
 void example1();
 void example2();
@@ -11,6 +12,8 @@ void multidim_stack_array();
 void multidim_heap_array();
 void access_violation();
 void pointer_casting();
+void array_pointer();
+void double_ints(int* the_array, size_t size);
 
 int main() {
 	example1();
@@ -24,6 +27,7 @@ int main() {
 	multidim_heap_array();
 	//access_violation(); // Crashes with 0xc0000005.
 	pointer_casting();
+	array_pointer();
 }
 
 void example1() {
@@ -163,3 +167,55 @@ void pointer_casting() {
 	//char* char_ptr2{ static_cast<char*>(s2) };
 	//std::println("Simple as char: '{}'", *char_ptr2);
 }
+
+void array_pointer() {
+	std::println("\narray_pointer()");
+	int my_int_array[10]{};
+	int* my_int_ptr{ my_int_array };
+	my_int_ptr[4] = 5;
+
+	//
+	size_t arr_size{ 4 };
+	int* free_store_array{ new int[arr_size] { 1, 5, 3, 4 } };
+	std::print("free_store_array: [");
+	for (size_t i{ 0 }; i < arr_size; ++i) {
+		std::print(" {} ", free_store_array[i]);
+	}
+	std::println("]");
+	double_ints(free_store_array, arr_size);
+	std::print("free_store_array: [");
+	for (size_t i{ 0 }; i < arr_size; ++i) {
+		std::print(" {} ", free_store_array[i]);
+	}
+	std::println("]");
+	delete[] free_store_array;
+	free_store_array = nullptr;
+
+	int stack_array[]{ 5, 7, 9, 11 };
+	arr_size = std::size(stack_array); // New way.
+	std::print("stack_array: [");
+	for (size_t i{ 0 }; i < arr_size; ++i) {
+		std::print(" {} ", stack_array[i]);
+	}
+	std::println("]");
+	//arr_size = sizeof(stack_array) / sizeof(stack_array[0]); // Old way.
+	double_ints(stack_array, arr_size);
+	std::print("stack_array: [");
+	for (size_t i{ 0 }; i < arr_size; ++i) {
+		std::print(" {} ", stack_array[i]);
+	}
+	std::println("]");
+	double_ints(&stack_array[0], arr_size);
+	std::print("stack_array: [");
+	for (size_t i{ 0 }; i < arr_size; ++i) {
+		std::print(" {} ", stack_array[i]);
+	}
+	std::println("]");
+}
+
+void double_ints(int* the_array, size_t size) {
+	for (size_t i{ 0 }; i < size; ++i) {
+		the_array[i] *= 2;
+	}
+}
+
