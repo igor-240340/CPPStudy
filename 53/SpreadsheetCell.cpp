@@ -2,6 +2,10 @@ module spreadsheet_cell;
 
 import std;
 
+SpreadsheetCell::SpreadsheetCell(double initial_value) {
+	set_value(initial_value);
+}
+
 void SpreadsheetCell::set_value(double value) {
 	this->value = value;
 }

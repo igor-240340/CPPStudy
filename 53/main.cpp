@@ -10,10 +10,8 @@ int main() {
 }
 
 void on_stack() {
-	SpreadsheetCell my_cell, another_cell;
-	my_cell.set_value(6);
-	another_cell.set_string("3.2");
-
+	SpreadsheetCell my_cell{ 5 }, another_cell{ 4 };
+	
 	std::println("cell 1: {}", my_cell.get_value());
 	std::println("cell 2: {}", another_cell.get_value());
 
@@ -22,10 +20,14 @@ void on_stack() {
 }
 
 void on_freestore() {
-	SpreadsheetCell* my_cell_p{ new SpreadsheetCell{} };
+	std::unique_ptr<SpreadsheetCell> smart_cell_p{ std::make_unique<SpreadsheetCell>(4) };
 
-	my_cell_p->set_value(3.7);
-	std::println("cell 1: {} {}", my_cell_p->get_value(), my_cell_p->get_string());
+	SpreadsheetCell* my_cell_p{ new SpreadsheetCell{ 5 } };
+
+	SpreadsheetCell* another_cell_p{ nullptr };
+	another_cell_p = new SpreadsheetCell{ 4 };
 	delete my_cell_p;
 	my_cell_p = nullptr;
+	delete another_cell_p;
+	another_cell_p = nullptr;
 }
