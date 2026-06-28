@@ -4,7 +4,9 @@ import std;
 
 export class SpreadsheetCell {
 public:
+	SpreadsheetCell();
 	SpreadsheetCell(double initial_value);
+	SpreadsheetCell(std::string_view initial_value);
 
 	void set_value(double value);
 	double get_value() const;
