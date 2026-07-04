@@ -2,12 +2,11 @@ module spreadsheet_cell;
 
 import std;
 
-SpreadsheetCell::SpreadsheetCell() {
+//SpreadsheetCell::SpreadsheetCell() {
 	//value = 0; // Мы инициализируем переменную в определении класса.
-}
+//}
 
-SpreadsheetCell::SpreadsheetCell(double initial_value) {
-	set_value(initial_value);
+SpreadsheetCell::SpreadsheetCell(double initial_value) : value{ initial_value } {
 }
 
 SpreadsheetCell::SpreadsheetCell(std::string_view initial_value) {
