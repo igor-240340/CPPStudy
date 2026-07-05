@@ -7,6 +7,7 @@ public:
 	SpreadsheetCell() = default;
 	SpreadsheetCell(double initial_value);
 	SpreadsheetCell(std::string_view initial_value);
+	SpreadsheetCell(const SpreadsheetCell& src);
 
 	void set_value(double value);
 	double get_value() const;
