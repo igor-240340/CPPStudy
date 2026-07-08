@@ -9,8 +9,7 @@ import std;
 SpreadsheetCell::SpreadsheetCell(double initial_value) : value{ initial_value } {
 }
 
-SpreadsheetCell::SpreadsheetCell(std::string_view initial_value) {
-	set_string(initial_value);
+SpreadsheetCell::SpreadsheetCell(std::string_view initial_value) : SpreadsheetCell(string_to_double(initial_value)) {
 }
 
 SpreadsheetCell::SpreadsheetCell(const SpreadsheetCell& src) : value{ src.value } {
