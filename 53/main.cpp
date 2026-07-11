@@ -5,12 +5,14 @@ void on_stack();
 void on_freestore();
 void multiple_ctors();
 void default_ctor();
+void explicit_ctor();
 
 int main() {
 	on_stack();
 	on_freestore();
 	multiple_ctors();
 	default_ctor();
+	explicit_ctor();
 }
 
 void on_stack() {
@@ -64,4 +66,15 @@ void default_ctor() {
 	// ... use my_cell_p
 	delete my_cell_p;
 	my_cell_p = nullptr;
+}
+
+void explicit_ctor() {
+	using namespace std::literals::string_view_literals;
+
+	SpreadsheetCell my_cell{ 4 };
+	std::println("my_cell = {}", my_cell.get_value());
+	my_cell = 5;
+	std::println("my_cell = {}", my_cell.get_value());
+	//my_cell = "6"sv; // Не скомпилируется.
+	//std::println("my_cell = {}", my_cell.get_value());
 }
