@@ -15,6 +15,10 @@ public:
 	void set_string(std::string_view value);
 	std::string get_string() const;
 
+public:
+	//SpreadsheetCell& operator=(const SpreadsheetCell& rhs) = default;
+	SpreadsheetCell& operator=(const SpreadsheetCell& rhs);
+
 private:
 	std::string double_to_string(double value) const;
 	double string_to_double(std::string_view value) const;

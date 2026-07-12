@@ -31,6 +31,15 @@ std::string SpreadsheetCell::get_string() const {
 	return double_to_string(value);
 }
 
+SpreadsheetCell& SpreadsheetCell::operator=(const SpreadsheetCell& rhs) {
+	if (&rhs == this) {
+		return *this;
+	}
+
+	value = rhs.value;
+	return *this;
+}
+
 std::string SpreadsheetCell::double_to_string(double value) const {
 	return std::to_string(value);
 }
