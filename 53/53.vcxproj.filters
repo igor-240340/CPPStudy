@@ -27,5 +27,8 @@
     <ClCompile Include="Spreadsheet.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Spreadsheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
