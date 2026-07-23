@@ -9,6 +9,15 @@ Spreadsheet::Spreadsheet(std::size_t width, std::size_t height) : width{ width }
 	}
 }
 
+Spreadsheet::~Spreadsheet() {
+	for (size_t i = 0; i < width; i++) {
+		delete[] cells[i];
+	}
+	
+	delete[] cells;
+	cells = nullptr;
+}
+
 void Spreadsheet::set_cell_at(std::size_t x, std::size_t y, const SpreadsheetCell& cell) {
 	verify_coordinate(x, y);
 	cells[x][y] = cell;
