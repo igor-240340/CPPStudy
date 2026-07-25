@@ -9,6 +9,14 @@ Spreadsheet::Spreadsheet(std::size_t width, std::size_t height) : width{ width }
 	}
 }
 
+Spreadsheet::Spreadsheet(const Spreadsheet& src) : Spreadsheet{ src.width, src.height } {
+	for (size_t i = 0; i < width; i++) {
+		for (size_t j = 0; j < height; j++) {
+			cells[i][j] = src.cells[i][j];
+		}
+	}
+}
+
 Spreadsheet::~Spreadsheet() {
 	for (size_t i = 0; i < width; i++) {
 		delete[] cells[i];
@@ -16,6 +24,18 @@ Spreadsheet::~Spreadsheet() {
 	
 	delete[] cells;
 	cells = nullptr;
+}
+
+Spreadsheet& Spreadsheet::operator=(const Spreadsheet& rhs) {
+	Spreadsheet temp{ rhs };
+	swap(temp);
+	return *this;
+}
+
+void Spreadsheet::swap(Spreadsheet& other) noexcept {
+	std::swap(width, other.width);
+	std::swap(height, other.height);
+	std::swap(cells, other.cells);
 }
 
 void Spreadsheet::set_cell_at(std::size_t x, std::size_t y, const SpreadsheetCell& cell) {
