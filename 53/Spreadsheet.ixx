@@ -6,10 +6,10 @@ import std;
 export class Spreadsheet {
 public:
 	Spreadsheet(std::size_t width, std::size_t height);
-	Spreadsheet(const Spreadsheet& src);
+	Spreadsheet(const Spreadsheet& src) = delete;
 	~Spreadsheet();
 
-	Spreadsheet& operator=(const Spreadsheet& rhs);
+	Spreadsheet& operator=(const Spreadsheet& rhs) = delete;
 	void swap(Spreadsheet& other) noexcept;
 
 	void set_cell_at(std::size_t x, std::size_t y, const SpreadsheetCell& cell);

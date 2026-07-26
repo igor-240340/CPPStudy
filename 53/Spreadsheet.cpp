@@ -9,6 +9,7 @@ Spreadsheet::Spreadsheet(std::size_t width, std::size_t height) : width{ width }
 	}
 }
 
+/*
 Spreadsheet::Spreadsheet(const Spreadsheet& src) : Spreadsheet{ src.width, src.height } {
 	for (size_t i = 0; i < width; i++) {
 		for (size_t j = 0; j < height; j++) {
@@ -16,6 +17,7 @@ Spreadsheet::Spreadsheet(const Spreadsheet& src) : Spreadsheet{ src.width, src.h
 		}
 	}
 }
+*/
 
 Spreadsheet::~Spreadsheet() {
 	for (size_t i = 0; i < width; i++) {
@@ -26,11 +28,13 @@ Spreadsheet::~Spreadsheet() {
 	cells = nullptr;
 }
 
+/*
 Spreadsheet& Spreadsheet::operator=(const Spreadsheet& rhs) {
 	Spreadsheet temp{ rhs };
 	swap(temp);
 	return *this;
 }
+*/
 
 void Spreadsheet::swap(Spreadsheet& other) noexcept {
 	std::swap(width, other.width);
