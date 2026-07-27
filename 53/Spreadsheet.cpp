@@ -19,6 +19,10 @@ Spreadsheet::Spreadsheet(const Spreadsheet& src) : Spreadsheet{ src.width, src.h
 }
 */
 
+Spreadsheet::Spreadsheet(Spreadsheet&& src) noexcept {
+	move_from(src);
+}
+
 Spreadsheet::~Spreadsheet() {
 	for (size_t i = 0; i < width; i++) {
 		delete[] cells[i];
@@ -36,6 +40,16 @@ Spreadsheet& Spreadsheet::operator=(const Spreadsheet& rhs) {
 }
 */
 
+Spreadsheet& Spreadsheet::operator=(Spreadsheet&& rhs) noexcept {
+	if (this == &rhs) {
+		return *this;
+	}
+
+	cleanup();
+	move_from(rhs);
+	return *this;
+}
+
 void Spreadsheet::swap(Spreadsheet& other) noexcept {
 	std::swap(width, other.width);
 	std::swap(height, other.height);
@@ -50,6 +64,26 @@ void Spreadsheet::set_cell_at(std::size_t x, std::size_t y, const SpreadsheetCel
 SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) {
 	verify_coordinate(x, y);
 	return cells[x][y];
+}
+
+void Spreadsheet::cleanup() noexcept {
+	for (size_t i = 0; i < width; i++) {
+		delete[] cells[i];
+	}
+	delete[] cells;
+
+	cells = nullptr;
+	width = height = 0;
+}
+
+void Spreadsheet::move_from(Spreadsheet& src) noexcept {
+	width = src.width;
+	height = src.height;
+	cells = src.cells;
+
+	src.width = 0;
+	src.height = 0;
+	src.cells = nullptr;
 }
 
 void Spreadsheet::verify_coordinate(std::size_t x, std::size_t y) const {

@@ -7,15 +7,20 @@ export class Spreadsheet {
 public:
 	Spreadsheet(std::size_t width, std::size_t height);
 	Spreadsheet(const Spreadsheet& src) = delete;
+	Spreadsheet(Spreadsheet&& src) noexcept;
 	~Spreadsheet();
 
 	Spreadsheet& operator=(const Spreadsheet& rhs) = delete;
+	Spreadsheet& operator=(Spreadsheet&& rhs) noexcept;
 	void swap(Spreadsheet& other) noexcept;
 
 	void set_cell_at(std::size_t x, std::size_t y, const SpreadsheetCell& cell);
 	SpreadsheetCell& get_cell_at(std::size_t x, std::size_t y);
 
 private:
+	void cleanup() noexcept;
+	void move_from(Spreadsheet& src) noexcept;
+
 	void verify_coordinate(std::size_t x, std::size_t y) const;
 	std::size_t width = 0;
 	std::size_t height = 0;
