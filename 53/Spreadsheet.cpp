@@ -77,13 +77,9 @@ void Spreadsheet::cleanup() noexcept {
 }
 
 void Spreadsheet::move_from(Spreadsheet& src) noexcept {
-	width = src.width;
-	height = src.height;
-	cells = src.cells;
-
-	src.width = 0;
-	src.height = 0;
-	src.cells = nullptr;
+	width = std::exchange(src.width, 0);
+	height = std::exchange(src.height, 0);
+	cells = std::exchange(src.cells, nullptr);
 }
 
 void Spreadsheet::verify_coordinate(std::size_t x, std::size_t y) const {
