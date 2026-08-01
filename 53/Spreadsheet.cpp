@@ -20,7 +20,7 @@ Spreadsheet::Spreadsheet(const Spreadsheet& src) : Spreadsheet{ src.width, src.h
 */
 
 Spreadsheet::Spreadsheet(Spreadsheet&& src) noexcept {
-	move_from(src);
+	swap(src);
 }
 
 Spreadsheet::~Spreadsheet() {
@@ -41,12 +41,8 @@ Spreadsheet& Spreadsheet::operator=(const Spreadsheet& rhs) {
 */
 
 Spreadsheet& Spreadsheet::operator=(Spreadsheet&& rhs) noexcept {
-	if (this == &rhs) {
-		return *this;
-	}
-
-	cleanup();
-	move_from(rhs);
+	Spreadsheet moved = std::move(rhs);
+	swap(moved);
 	return *this;
 }
 
