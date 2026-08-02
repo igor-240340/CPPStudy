@@ -3,23 +3,26 @@ module spreadsheet;
 import std;
 
 Spreadsheet::Spreadsheet(std::size_t width, std::size_t height) : width{ width }, height{ height } {
+	std::println("Normal constructor");
+
 	cells = new SpreadsheetCell*[width];
 	for (std::size_t i = 0; i < width; i++) {
 		cells[i] = new SpreadsheetCell[height];
 	}
 }
 
-/*
 Spreadsheet::Spreadsheet(const Spreadsheet& src) : Spreadsheet{ src.width, src.height } {
+	std::println("Copy constructor");
+
 	for (size_t i = 0; i < width; i++) {
 		for (size_t j = 0; j < height; j++) {
 			cells[i][j] = src.cells[i][j];
 		}
 	}
 }
-*/
 
 Spreadsheet::Spreadsheet(Spreadsheet&& src) noexcept {
+	std::println("Move constructor");
 	swap(src);
 }
 
@@ -32,15 +35,17 @@ Spreadsheet::~Spreadsheet() {
 	cells = nullptr;
 }
 
-/*
 Spreadsheet& Spreadsheet::operator=(const Spreadsheet& rhs) {
+	std::println("Copy assignment operator");
+
 	Spreadsheet temp{ rhs };
 	swap(temp);
 	return *this;
 }
-*/
 
 Spreadsheet& Spreadsheet::operator=(Spreadsheet&& rhs) noexcept {
+	std::println("Move assignment operator");
+
 	Spreadsheet moved = std::move(rhs);
 	swap(moved);
 	return *this;
@@ -85,4 +90,8 @@ void Spreadsheet::verify_coordinate(std::size_t x, std::size_t y) const {
 	if (y >= height) {
 		throw std::out_of_range{ std::format("y ({}) must be less than height ({}).", x, height) };
 	}
+}
+
+void swap(Spreadsheet& first, Spreadsheet& second) noexcept {
+	first.swap(second);
 }

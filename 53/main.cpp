@@ -1,4 +1,5 @@
 import spreadsheet_cell;
+import spreadsheet;
 import std;
 
 void on_stack();
@@ -7,12 +8,18 @@ void multiple_ctors();
 void default_ctor();
 void explicit_ctor();
 
+Spreadsheet create_object() {
+	return Spreadsheet(3, 2);
+}
+void move_ops();
+
 int main() {
-	on_stack();
-	on_freestore();
-	multiple_ctors();
-	default_ctor();
-	explicit_ctor();
+	//on_stack();
+	//on_freestore();
+	//multiple_ctors();
+	//default_ctor();
+	//explicit_ctor();
+	move_ops();
 }
 
 void on_stack() {
@@ -77,4 +84,21 @@ void explicit_ctor() {
 	std::println("my_cell = {}", my_cell.get_value());
 	//my_cell = "6"sv; // Не скомпилируется.
 	//std::println("my_cell = {}", my_cell.get_value());
+}
+
+void move_ops() {
+	std::vector<Spreadsheet> vec;
+	for (size_t i = 0; i < 2; i++) {
+		std::println("Iteration {}", i);
+		vec.push_back(Spreadsheet(100, 100));
+		std::println("");
+	}
+
+	Spreadsheet s(2, 3);
+	s = create_object();
+
+	std::println("");
+
+	Spreadsheet s2(5, 6);
+	s2 = s;
 }

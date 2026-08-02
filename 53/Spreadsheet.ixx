@@ -6,11 +6,13 @@ import std;
 export class Spreadsheet {
 public:
 	Spreadsheet(std::size_t width, std::size_t height);
-	Spreadsheet(const Spreadsheet& src) = delete;
+	//Spreadsheet(const Spreadsheet& src) = delete;
+	Spreadsheet(const Spreadsheet& src);
 	Spreadsheet(Spreadsheet&& src) noexcept;
 	~Spreadsheet();
 
-	Spreadsheet& operator=(const Spreadsheet& rhs) = delete;
+	//Spreadsheet& operator=(const Spreadsheet& rhs) = delete;
+	Spreadsheet& operator=(const Spreadsheet& rhs);
 	Spreadsheet& operator=(Spreadsheet&& rhs) noexcept;
 	void swap(Spreadsheet& other) noexcept;
 
@@ -28,7 +30,3 @@ private:
 };
 
 export void swap(Spreadsheet& first, Spreadsheet& second) noexcept;
-
-void swap(Spreadsheet& first, Spreadsheet& second) noexcept {
-	first.swap(second);
-}
