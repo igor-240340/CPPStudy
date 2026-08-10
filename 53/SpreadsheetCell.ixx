@@ -20,8 +20,8 @@ public:
 	SpreadsheetCell& operator=(const SpreadsheetCell& rhs);
 
 private:
-	std::string double_to_string(double value) const;
-	double string_to_double(std::string_view value) const;
+	static std::string double_to_string(double value);
+	static double string_to_double(std::string_view value);
 	double value{ 0 };
 };
 

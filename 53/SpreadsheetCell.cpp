@@ -40,11 +40,11 @@ SpreadsheetCell& SpreadsheetCell::operator=(const SpreadsheetCell& rhs) {
 	return *this;
 }
 
-std::string SpreadsheetCell::double_to_string(double value) const {
+std::string SpreadsheetCell::double_to_string(double value) {
 	return std::to_string(value);
 }
 
-double SpreadsheetCell::string_to_double(std::string_view value) const {
+double SpreadsheetCell::string_to_double(std::string_view value) {
 	double number{ 0 };
 	std::from_chars(value.data(), value.data() + value.size(), number);
 	return number;
