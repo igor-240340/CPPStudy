@@ -20,6 +20,7 @@ void SpreadsheetCell::set_value(double value) {
 }
 
 double SpreadsheetCell::get_value() const {
+	num_accesses++;
 	return value;
 }
 

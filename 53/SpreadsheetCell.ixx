@@ -22,7 +22,10 @@ public:
 private:
 	static std::string double_to_string(double value);
 	static double string_to_double(std::string_view value);
-	double value{ 0 };
+
+private:
+	double value = 0;
+	mutable unsigned int num_accesses = 0;
 };
 
 /*
