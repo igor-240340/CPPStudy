@@ -63,6 +63,10 @@ void Spreadsheet::set_cell_at(std::size_t x, std::size_t y, const SpreadsheetCel
 }
 
 SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) {
+	return const_cast<SpreadsheetCell&>(std::as_const(*this).get_cell_at(x, y));
+}
+
+const SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) const {
 	verify_coordinate(x, y);
 	return cells[x][y];
 }

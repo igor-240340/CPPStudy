@@ -57,7 +57,7 @@ void multiple_ctors() {
 void default_ctor() {
 	//SpreadsheetCell my_cell(); // Объявление функции, а не вызов дефолтного конструктора.
 	SpreadsheetCell my_cell{};
-	my_cell.set_value(6);
+	my_cell.set(6);
 	std::println("cell 1: {}", my_cell.get_value());
 
 	SpreadsheetCell cells[3];

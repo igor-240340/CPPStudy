@@ -9,10 +9,10 @@ public:
 	explicit SpreadsheetCell(std::string_view initial_value);
 	SpreadsheetCell(const SpreadsheetCell& src);
 
-	void set_value(double value);
-	double get_value() const;
+	void set(double value);
+	void set(std::string_view value);
 
-	void set_string(std::string_view value);
+	double get_value() const;
 	std::string get_string() const;
 
 public:

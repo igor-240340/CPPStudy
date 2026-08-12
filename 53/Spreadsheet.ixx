@@ -18,6 +18,7 @@ public:
 
 	void set_cell_at(std::size_t x, std::size_t y, const SpreadsheetCell& cell);
 	SpreadsheetCell& get_cell_at(std::size_t x, std::size_t y);
+	const SpreadsheetCell& get_cell_at(std::size_t x, std::size_t y) const;
 
 private:
 	void cleanup() noexcept;

@@ -15,7 +15,7 @@ SpreadsheetCell::SpreadsheetCell(std::string_view initial_value) : SpreadsheetCe
 SpreadsheetCell::SpreadsheetCell(const SpreadsheetCell& src) : value{ src.value } {
 }
 
-void SpreadsheetCell::set_value(double value) {
+void SpreadsheetCell::set(double value) {
 	this->value = value;
 }
 
@@ -24,7 +24,7 @@ double SpreadsheetCell::get_value() const {
 	return value;
 }
 
-void SpreadsheetCell::set_string(std::string_view string_value) {
+void SpreadsheetCell::set(std::string_view string_value) {
 	value = string_to_double(string_value);
 }
 
