@@ -10,6 +10,7 @@ public:
 	SpreadsheetCell(const SpreadsheetCell& src);
 
 	void set(double value);
+	void set(int value) = delete;
 	void set(std::string_view value);
 
 	double get_value() const;

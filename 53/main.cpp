@@ -7,6 +7,7 @@ void on_freestore();
 void multiple_ctors();
 void default_ctor();
 void explicit_ctor();
+void explicitly_deleting_overloads();
 
 Spreadsheet create_object() {
 	return Spreadsheet(3, 2);
@@ -14,12 +15,13 @@ Spreadsheet create_object() {
 void move_ops();
 
 int main() {
-	//on_stack();
-	//on_freestore();
-	//multiple_ctors();
-	//default_ctor();
-	//explicit_ctor();
+	on_stack();
+	on_freestore();
+	multiple_ctors();
+	default_ctor();
+	explicit_ctor();
 	move_ops();
+	explicitly_deleting_overloads();
 }
 
 void on_stack() {
@@ -57,7 +59,7 @@ void multiple_ctors() {
 void default_ctor() {
 	//SpreadsheetCell my_cell(); // Объявление функции, а не вызов дефолтного конструктора.
 	SpreadsheetCell my_cell{};
-	my_cell.set(6);
+	my_cell.set(6.0);
 	std::println("cell 1: {}", my_cell.get_value());
 
 	SpreadsheetCell cells[3];
@@ -84,6 +86,12 @@ void explicit_ctor() {
 	std::println("my_cell = {}", my_cell.get_value());
 	//my_cell = "6"sv; // Не скомпилируется.
 	//std::println("my_cell = {}", my_cell.get_value());
+}
+
+void explicitly_deleting_overloads() {
+	SpreadsheetCell cell;
+	cell.set(1.23);
+	//cell.set(123); // Error.
 }
 
 void move_ops() {
