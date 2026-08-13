@@ -62,11 +62,24 @@ void Spreadsheet::set_cell_at(std::size_t x, std::size_t y, const SpreadsheetCel
 	cells[x][y] = cell;
 }
 
+//SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) {
+//	return const_cast<SpreadsheetCell&>(std::as_const(*this).get_cell_at(x, y));
+//}
+
 SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) {
-	return const_cast<SpreadsheetCell&>(std::as_const(*this).get_cell_at(x, y));
+	return get_cell_at_helper(x, y);
 }
 
+//const SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) const {
+//	verify_coordinate(x, y);
+//	return cells[x][y];
+//}
+
 const SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) const {
+	return get_cell_at_helper(x, y);
+}
+
+SpreadsheetCell& Spreadsheet::get_cell_at_helper(std::size_t x, std::size_t y) const {
 	verify_coordinate(x, y);
 	return cells[x][y];
 }

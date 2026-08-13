@@ -21,6 +21,7 @@ public:
 	const SpreadsheetCell& get_cell_at(std::size_t x, std::size_t y) const;
 
 private:
+	SpreadsheetCell& get_cell_at_helper(std::size_t x, std::size_t y) const;
 	void cleanup() noexcept;
 	void move_from(Spreadsheet& src) noexcept;
 
