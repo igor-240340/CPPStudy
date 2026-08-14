@@ -5,7 +5,7 @@ import std;
 
 export class Spreadsheet {
 public:
-	Spreadsheet(std::size_t width, std::size_t height);
+	explicit Spreadsheet(std::size_t width = 100, std::size_t height = 100);
 	//Spreadsheet(const Spreadsheet& src) = delete;
 	Spreadsheet(const Spreadsheet& src);
 	Spreadsheet(Spreadsheet&& src) noexcept;

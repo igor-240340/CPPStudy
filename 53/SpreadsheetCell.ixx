@@ -13,8 +13,14 @@ public:
 	void set(int value) = delete;
 	void set(std::string_view value);
 
-	double get_value() const;
-	std::string get_string() const;
+	inline double get_value() const {
+		num_accesses++;
+		return value;
+	}
+
+	inline std::string get_string() const {
+		return double_to_string(value);
+	}
 
 public:
 	//SpreadsheetCell& operator=(const SpreadsheetCell& rhs) = default;

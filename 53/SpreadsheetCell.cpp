@@ -19,17 +19,9 @@ void SpreadsheetCell::set(double value) {
 	this->value = value;
 }
 
-double SpreadsheetCell::get_value() const {
-	num_accesses++;
-	return value;
-}
 
 void SpreadsheetCell::set(std::string_view string_value) {
 	value = string_to_double(string_value);
-}
-
-std::string SpreadsheetCell::get_string() const {
-	return double_to_string(value);
 }
 
 SpreadsheetCell& SpreadsheetCell::operator=(const SpreadsheetCell& rhs) {
