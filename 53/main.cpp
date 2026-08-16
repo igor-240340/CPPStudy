@@ -8,6 +8,7 @@ void multiple_ctors();
 void default_ctor();
 void explicit_ctor();
 void explicitly_deleting_overloads();
+void static_member();
 
 Spreadsheet create_object() {
 	return Spreadsheet(3, 2);
@@ -22,6 +23,7 @@ int main() {
 	explicit_ctor();
 	move_ops();
 	explicitly_deleting_overloads();
+	static_member();
 }
 
 void on_stack() {
@@ -92,6 +94,10 @@ void explicitly_deleting_overloads() {
 	SpreadsheetCell cell;
 	cell.set(1.23);
 	//cell.set(123); // Error.
+}
+
+void static_member() {
+	Spreadsheet sh;
 }
 
 void move_ops() {
