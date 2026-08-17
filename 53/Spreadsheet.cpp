@@ -2,7 +2,8 @@ module spreadsheet;
 
 import std;
 
-Spreadsheet::Spreadsheet(std::size_t width, std::size_t height) : width{ width }, height{ height } {
+Spreadsheet::Spreadsheet(std::size_t width, std::size_t height)
+: id(counter++), width{ width }, height{ height } {
 	std::println("Normal constructor");
 
 	cells = new SpreadsheetCell*[width];
@@ -11,7 +12,7 @@ Spreadsheet::Spreadsheet(std::size_t width, std::size_t height) : width{ width }
 	}
 }
 
-Spreadsheet::Spreadsheet(const Spreadsheet& src) : Spreadsheet{ src.width, src.height } {
+Spreadsheet::Spreadsheet(const Spreadsheet& src) : Spreadsheet(src.width, src.height) {
 	std::println("Copy constructor");
 
 	for (size_t i = 0; i < width; i++) {
@@ -38,7 +39,7 @@ Spreadsheet::~Spreadsheet() {
 Spreadsheet& Spreadsheet::operator=(const Spreadsheet& rhs) {
 	std::println("Copy assignment operator");
 
-	Spreadsheet temp{ rhs };
+	Spreadsheet temp(rhs);
 	swap(temp);
 	return *this;
 }
@@ -77,6 +78,10 @@ SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) {
 
 const SpreadsheetCell& Spreadsheet::get_cell_at(std::size_t x, std::size_t y) const {
 	return get_cell_at_helper(x, y);
+}
+
+std::size_t Spreadsheet::get_id() const {
+	return std::size_t();
 }
 
 SpreadsheetCell& Spreadsheet::get_cell_at_helper(std::size_t x, std::size_t y) const {

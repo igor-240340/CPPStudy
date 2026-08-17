@@ -20,8 +20,12 @@ public:
 	SpreadsheetCell& get_cell_at(std::size_t x, std::size_t y);
 	const SpreadsheetCell& get_cell_at(std::size_t x, std::size_t y) const;
 
+	std::size_t get_id() const;
+
 private:
 	inline static std::size_t counter = 0;
+	
+	const std::size_t id = 0;
 
 	SpreadsheetCell& get_cell_at_helper(std::size_t x, std::size_t y) const;
 	void cleanup() noexcept;
