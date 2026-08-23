@@ -5,7 +5,11 @@ import std;
 
 export class Spreadsheet {
 public:
-	explicit Spreadsheet(std::size_t width = 100, std::size_t height = 100);
+	static constexpr std::size_t max_height = 100;
+	static constexpr std::size_t max_width = 100;
+
+public:
+	explicit Spreadsheet(std::size_t width = max_width, std::size_t height = max_height);
 	//Spreadsheet(const Spreadsheet& src) = delete;
 	Spreadsheet(const Spreadsheet& src);
 	Spreadsheet(Spreadsheet&& src) noexcept;

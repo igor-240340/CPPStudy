@@ -3,7 +3,7 @@ module spreadsheet;
 import std;
 
 Spreadsheet::Spreadsheet(std::size_t width, std::size_t height)
-: id(counter++), width{ width }, height{ height } {
+: id(counter++), width(std::min(width, max_width)), height(std::min(height, max_height)) {
 	std::println("Normal constructor");
 
 	cells = new SpreadsheetCell*[width];
