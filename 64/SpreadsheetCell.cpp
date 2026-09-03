@@ -2,11 +2,9 @@ module spreadsheet_cell;
 
 import std;
 
-using namespace std;
-
 SpreadsheetCell::SpreadsheetCell(double initial_value) : value(initial_value) {}
 
-SpreadsheetCell::SpreadsheetCell(string_view initial_value) : value(string_to_double(initial_value)) {}
+SpreadsheetCell::SpreadsheetCell(std::string_view initial_value) : value(string_to_double(initial_value)) {}
 
 void SpreadsheetCell::set(double value) {
 	this->value = value;
@@ -16,21 +14,21 @@ double SpreadsheetCell::get_value() const {
 	return value;
 }
 
-void SpreadsheetCell::set(string_view value) {
+void SpreadsheetCell::set(std::string_view value) {
 	this->value = string_to_double(value);
 }
 
-string SpreadsheetCell::get_string() const {
+std::string SpreadsheetCell::get_string() const {
 	return double_to_string(value);
 }
 
-string SpreadsheetCell::double_to_string(double value) {
-	return to_string(value);
+std::string SpreadsheetCell::double_to_string(double value) {
+	return std::to_string(value);
 }
 
-double SpreadsheetCell::string_to_double(string_view value) {
+double SpreadsheetCell::string_to_double(std::string_view value) {
 	double number = 0;
-	from_chars(value.data(), value.data() + value.size(), number);
+	std::from_chars(value.data(), value.data() + value.size(), number);
 	return number;
 }
 
@@ -64,7 +62,7 @@ SpreadsheetCell operator/(const SpreadsheetCell& lhs, const SpreadsheetCell& rhs
 	return result;
 
 	//if (rhs.get_value() == 0) {
-	//	throw invalid_argument { "Divide by zero." };
+	//	throw std::invalid_argument { "Divide by zero." };
 	//}
 	//return SpreadsheetCell { lhs.get_value() / rhs.get_value() };
 }
@@ -86,7 +84,7 @@ SpreadsheetCell& SpreadsheetCell::operator*=(const SpreadsheetCell& rhs) {
 
 SpreadsheetCell& SpreadsheetCell::operator/=(const SpreadsheetCell& rhs) {
 	if (rhs.get_value() == 0) {
-		throw invalid_argument{ "Divide by zero." };
+		throw std::invalid_argument{ "Divide by zero." };
 	}
 	set(get_value() / rhs.get_value());
 	return *this;
@@ -96,6 +94,6 @@ bool SpreadsheetCell::operator==(double rhs) const {
 	return get_value() == rhs;
 }
 
-partial_ordering SpreadsheetCell::operator<=>(double rhs) const {
+std::partial_ordering SpreadsheetCell::operator<=>(double rhs) const {
 	return get_value() <=> rhs;
 }
