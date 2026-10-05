@@ -21,5 +21,8 @@
     <ClCompile Include="SpreadsheetCell.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StringSpreadsheetCell.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
