@@ -147,6 +147,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DoubleSpreadsheetCell.ixx" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SpreadsheetCell.ixx" />
     <ClCompile Include="StringSpreadsheetCell.ixx" />
