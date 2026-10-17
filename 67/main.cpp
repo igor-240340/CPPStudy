@@ -19,4 +19,12 @@ int main() {
 		cell_array[1]->get_string(),
 		cell_array[2]->get_string()
 	);
+
+	DoubleSpreadsheetCell double_cell;
+	double_cell.set(8.4);
+	StringSpreadsheetCell string_cell;
+	string_cell.set("Hello ");
+	StringSpreadsheetCell result(string_cell + double_cell);
+	
+	std::println("{}", result.get_string());
 }

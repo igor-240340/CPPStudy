@@ -31,3 +31,9 @@ private:
 
 	std::optional<double> value;
 };
+
+export DoubleSpreadsheetCell operator+(const DoubleSpreadsheetCell& lhs, const DoubleSpreadsheetCell& rhs) {
+	DoubleSpreadsheetCell new_сell;
+	new_сell.set(lhs.get_value() + rhs.get_value());
+	return new_сell;
+}
