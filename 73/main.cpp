@@ -1,4 +1,4 @@
-#include <string_view>
+import std;
 
 class Base {
 public:
